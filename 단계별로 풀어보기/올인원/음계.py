@@ -1,16 +1,20 @@
-#문제 풀이 핵심 아이디어
-#1. 카드 중 3개씩 뽑는 모든 경우의 수는 C(n,3)이며, n은 최대 100입니다.
-#2. 따라서 단순히 3중 반복문으로 모든 경우의 수를 확인하여 문제를 해결할 수 있습니다.
+#문제 풀이 핵심아이디어
+#1. 리스트에서의 원소를 차례대로 비교합니다.
+#2. 비교할 때 두 원소를 기준으로 오름차순/내림차순 여부를 체크합니다.
 
-n, m = list(map(int, input().split(' ')))
-data = list(map(int, input().split(' ')))
-result = 0
-length = len(data)
-count = 0
-for i in range(0, length):
-    for j in range(i+1, length):
-        for k in range(i+2, length):
-            sum_value = data[i] + data[j] + data[k]
-            if sum_value <= m:
-                result = max(result, sum_value)
-print(result)
+a = list(map(int, input().split(' ')))
+ascending = True
+descending = True
+
+for i in range(1, 8):
+    if a[i] > a[i-1]:
+        descending = False
+    elif a[i] < a[i-1]:
+        ascending = False
+
+if ascending:
+    print('ascending')
+elif descending:
+    print('descending')
+else:
+    print('mixed')
